@@ -6,6 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		520F45BC2F2B5F4C0043ABBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 520F45B42F2B5F4C0043ABBA /* Assets.xcassets */; };
+		520F45C02F2B5F4C0043ABBA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520F45B32F2B5F4C0043ABBA /* AppDelegate.swift */; };
+		520F45C12F2B5F4C0043ABBA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520F45B82F2B5F4C0043ABBA /* SceneDelegate.swift */; };
+		520F462B2F2B65320043ABBA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520F462A2F2B652E0043ABBA /* Extensions.swift */; };
+		520F462D2F2B65530043ABBA /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520F462C2F2B654F0043ABBA /* LoadingView.swift */; };
+		520F462F2F2B658F0043ABBA /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 520F462E2F2B658F0043ABBA /* loading.json */; };
+		520F46332F2B65D80043ABBA /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 520F46322F2B65D80043ABBA /* Lottie */; };
+		520F46382F2B66DA0043ABBA /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520F46352F2B660B0043ABBA /* AppCoordinator.swift */; };
+		520F46392F2B66E00043ABBA /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520F46362F2B662A0043ABBA /* BaseCoordinator.swift */; };
+		520F463A2F2B66E50043ABBA /* DefaultAppScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520F46372F2B665A0043ABBA /* DefaultAppScreenFactory.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		52F669002F2A1F4B008F24C6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,47 +37,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		520F45B32F2B5F4C0043ABBA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		520F45B42F2B5F4C0043ABBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		520F45B52F2B5F4C0043ABBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		520F45B82F2B5F4C0043ABBA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		520F462A2F2B652E0043ABBA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		520F462C2F2B654F0043ABBA /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		520F462E2F2B658F0043ABBA /* loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		520F46352F2B660B0043ABBA /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		520F46362F2B662A0043ABBA /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
+		520F46372F2B665A0043ABBA /* DefaultAppScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAppScreenFactory.swift; sourceTree = "<group>"; };
 		52F668E92F2A1F4A008F24C6 /* MovieProjectConcurrency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieProjectConcurrency.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52F668FF2F2A1F4B008F24C6 /* MovieProjectConcurrencyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieProjectConcurrencyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52F669092F2A1F4B008F24C6 /* MovieProjectConcurrencyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieProjectConcurrencyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		52F669112F2A1F4B008F24C6 /* Exceptions for "MovieProjectConcurrency" folder in "MovieProjectConcurrency" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 52F668E82F2A1F4A008F24C6 /* MovieProjectConcurrency */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		52F668EB2F2A1F4A008F24C6 /* MovieProjectConcurrency */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				52F669112F2A1F4B008F24C6 /* Exceptions for "MovieProjectConcurrency" folder in "MovieProjectConcurrency" target */,
-			);
-			path = MovieProjectConcurrency;
-			sourceTree = "<group>";
-		};
-		52F669022F2A1F4B008F24C6 /* MovieProjectConcurrencyTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MovieProjectConcurrencyTests;
-			sourceTree = "<group>";
-		};
-		52F6690C2F2A1F4B008F24C6 /* MovieProjectConcurrencyUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = MovieProjectConcurrencyUITests;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		52F668E62F2A1F4A008F24C6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				520F46332F2B65D80043ABBA /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,12 +78,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		520F46292F2B63D80043ABBA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				520F45B32F2B5F4C0043ABBA /* AppDelegate.swift */,
+				520F45B82F2B5F4C0043ABBA /* SceneDelegate.swift */,
+				520F462A2F2B652E0043ABBA /* Extensions.swift */,
+				520F462C2F2B654F0043ABBA /* LoadingView.swift */,
+				520F462E2F2B658F0043ABBA /* loading.json */,
+				520F45B42F2B5F4C0043ABBA /* Assets.xcassets */,
+				520F45B52F2B5F4C0043ABBA /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		520F46342F2B66010043ABBA /* App */ = {
+			isa = PBXGroup;
+			children = (
+				520F46352F2B660B0043ABBA /* AppCoordinator.swift */,
+				520F46362F2B662A0043ABBA /* BaseCoordinator.swift */,
+				520F46372F2B665A0043ABBA /* DefaultAppScreenFactory.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		52F668E02F2A1F4A008F24C6 = {
 			isa = PBXGroup;
 			children = (
-				52F668EB2F2A1F4A008F24C6 /* MovieProjectConcurrency */,
-				52F669022F2A1F4B008F24C6 /* MovieProjectConcurrencyTests */,
-				52F6690C2F2A1F4B008F24C6 /* MovieProjectConcurrencyUITests */,
+				520F46342F2B66010043ABBA /* App */,
+				520F46292F2B63D80043ABBA /* Resources */,
 				52F668EA2F2A1F4A008F24C6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -112,6 +128,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52F669122F2A1F4B008F24C6 /* Build configuration list for PBXNativeTarget "MovieProjectConcurrency" */;
 			buildPhases = (
+				520F463C2F2B67B70043ABBA /* Swiftlint Run Script */,
 				52F668E52F2A1F4A008F24C6 /* Sources */,
 				52F668E62F2A1F4A008F24C6 /* Frameworks */,
 				52F668E72F2A1F4A008F24C6 /* Resources */,
@@ -120,11 +137,9 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				52F668EB2F2A1F4A008F24C6 /* MovieProjectConcurrency */,
-			);
 			name = MovieProjectConcurrency;
 			packageProductDependencies = (
+				520F46322F2B65D80043ABBA /* Lottie */,
 			);
 			productName = MovieProjectConcurrency;
 			productReference = 52F668E92F2A1F4A008F24C6 /* MovieProjectConcurrency.app */;
@@ -142,9 +157,6 @@
 			);
 			dependencies = (
 				52F669012F2A1F4B008F24C6 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				52F669022F2A1F4B008F24C6 /* MovieProjectConcurrencyTests */,
 			);
 			name = MovieProjectConcurrencyTests;
 			packageProductDependencies = (
@@ -165,9 +177,6 @@
 			);
 			dependencies = (
 				52F6690B2F2A1F4B008F24C6 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				52F6690C2F2A1F4B008F24C6 /* MovieProjectConcurrencyUITests */,
 			);
 			name = MovieProjectConcurrencyUITests;
 			packageProductDependencies = (
@@ -208,6 +217,9 @@
 			);
 			mainGroup = 52F668E02F2A1F4A008F24C6;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				520F46312F2B65D80043ABBA /* XCRemoteSwiftPackageReference "lottie-spm" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 52F668EA2F2A1F4A008F24C6 /* Products */;
 			projectDirPath = "";
@@ -225,6 +237,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				520F462F2F2B658F0043ABBA /* loading.json in Resources */,
+				520F45BC2F2B5F4C0043ABBA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,11 +258,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		520F463C2F2B67B70043ABBA /* Swiftlint Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swiftlint Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nset -euo pipefail\ncd \"${PROJECT_DIR}\"\nexport DEVELOPER_DIR=\"/Applications/Xcode.app/Contents/Developer\"\nif [[ \"$(uname -m)\" == \"arm64\" ]]; then\n  export PATH=\"/opt/homebrew/bin:$PATH\"\nelse\n  export PATH=\"/usr/local/bin:$PATH\"\nfi\nif command -v swiftlint >/dev/null 2>&1; then\n  swiftlint lint --config \"${PROJECT_DIR}/.swiftlint.yml\"\nelse\n  echo \"warning: SwiftLint not installed. Run: brew install swiftlint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		52F668E52F2A1F4A008F24C6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				520F45C02F2B5F4C0043ABBA /* AppDelegate.swift in Sources */,
+				520F46392F2B66E00043ABBA /* BaseCoordinator.swift in Sources */,
+				520F462D2F2B65530043ABBA /* LoadingView.swift in Sources */,
+				520F46382F2B66DA0043ABBA /* AppCoordinator.swift in Sources */,
+				520F462B2F2B65320043ABBA /* Extensions.swift in Sources */,
+				520F45C12F2B5F4C0043ABBA /* SceneDelegate.swift in Sources */,
+				520F463A2F2B66E50043ABBA /* DefaultAppScreenFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,13 +332,17 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QX735LV746;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MovieProjectConcurrency/Info.plist;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Movie Project Concurrency";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -322,13 +368,17 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QX735LV746;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MovieProjectConcurrency/Info.plist;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Movie Project Concurrency";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -591,6 +641,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		520F46312F2B65D80043ABBA /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = exactVersion;
+				version = 4.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		520F46322F2B65D80043ABBA /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 520F46312F2B65D80043ABBA /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 52F668E12F2A1F4A008F24C6 /* Project object */;
 }
