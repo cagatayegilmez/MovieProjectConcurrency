@@ -46,7 +46,8 @@ final class LoadingView: UIView {
 
             layoutIfNeeded()
 
-            UIView.animate(withDuration: 0.3, animations: {
+            UIView.animate(withDuration: 0.3,
+                           animations: {
                 self.alpha = 1.0
             },
             completion: { _ in
@@ -62,7 +63,8 @@ final class LoadingView: UIView {
 
         isActive = false
 
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: 0.3,
+                       animations: {
             self.alpha = 0.0
         },
         completion: { _ in
