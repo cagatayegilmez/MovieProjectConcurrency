@@ -12,8 +12,14 @@ final class DefaultAppScreenFactory: AppScreenFactory {
     var navigate: ((AppRoute) -> Void)?
 
     func makeMovieList() -> UIViewController {
-        // - TODO: Make home view
-        UIViewController()
+        let dataController = HomeDataController(apiService: ServiceLayer())
+        let viewModel = HomeViewModel(dataController: dataController) { [weak self] movieId, title in
+            self?.navigate?(.movieDetail(movieId: movieId, title: title))
+        }
+        let viewController = HomeViewController(viewModel: viewModel)
+        let view = HomeView(viewModel: viewModel, loader: viewController)
+        viewController.addSwiftUIView(view)
+        return viewController
     }
 
     func makeMovieDetail(movieId: Int, movieTitle: String) -> UIViewController {
