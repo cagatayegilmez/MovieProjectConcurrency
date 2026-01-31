@@ -5,6 +5,7 @@
 //  Created by Çağatay Eğilmez on 30.01.2026.
 //
 
+@MainActor
 protocol HomeViewModelProtocol: AnyObject {
 
     /// State of screen
