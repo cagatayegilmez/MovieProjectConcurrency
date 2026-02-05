@@ -10,10 +10,12 @@ import UIKit
 final class DefaultAppScreenFactory: AppScreenFactory {
 
     var navigate: ((AppRoute) -> Void)?
+    private let networkScheduler = NetworkScheduler()
 
     func makeMovieList() -> UIViewController {
         let dataController = HomeDataController(apiService: ServiceLayer())
-        let viewModel = HomeViewModel(dataController: dataController) { [weak self] movieId, title in
+        let viewModel = HomeViewModel(dataController: dataController,
+                                      networkScheduler: networkScheduler) { [weak self] movieId, title in
             self?.navigate?(.movieDetail(movieId: movieId, title: title))
         }
         let viewController = HomeViewController(viewModel: viewModel)
@@ -24,7 +26,9 @@ final class DefaultAppScreenFactory: AppScreenFactory {
 
     func makeMovieDetail(movieId: Int, movieTitle: String) -> UIViewController {
         let dataController = MovieDetailDataController(apiService: ServiceLayer())
-        let viewModel = MovieDetailViewModel(dataController: dataController, movieId: movieId)
+        let viewModel = MovieDetailViewModel(dataController: dataController,
+                                             networkScheduler: networkScheduler,
+                                             movieId: movieId)
         let viewController = MovieDetailViewController(viewModel: viewModel)
         viewController.title = movieTitle
         let view = MovieDetailView(viewModel: viewModel, loader: viewController)

@@ -26,6 +26,7 @@ final class HomeViewModel: HomeViewModelProtocol {
         }
     }
     private let dataController: HomeDataProtocol
+    private let networkScheduler: NetworkSchedulerProtocol
     private var currentPage = 1
     private var totalPages = 1
     private var searchTask: Task<Void, Never>?
@@ -35,8 +36,10 @@ final class HomeViewModel: HomeViewModelProtocol {
     private let onNavigateToMovieDetail: (_ movieId: Int, _ title: String) -> Void
 
     init(dataController: HomeDataProtocol,
+         networkScheduler: NetworkSchedulerProtocol,
          onNavigateToMovieDetail: @escaping (_ movieId: Int, _ title: String) -> Void) {
         self.dataController = dataController
+        self.networkScheduler = networkScheduler
         self.onNavigateToMovieDetail = onNavigateToMovieDetail
     }
 
@@ -50,7 +53,7 @@ final class HomeViewModel: HomeViewModelProtocol {
     func onDisappear() {
         searchTask?.cancel()
         Task { @MainActor in
-            await NetworkScheduler.shared.killAllTasks()
+            await networkScheduler.killAllTasks()
         }
     }
 
@@ -78,7 +81,7 @@ final class HomeViewModel: HomeViewModelProtocol {
 
         currentPage = nextPage
         do {
-            try await NetworkScheduler.shared.doQueue { [weak self] in
+            try await networkScheduler.doQueue { [weak self] in
                 guard let self else {
                     return
                 }
@@ -104,7 +107,7 @@ final class HomeViewModel: HomeViewModelProtocol {
 
     private func loadInitialMovies() async {
         do {
-            try await NetworkScheduler.shared.doQueue { [weak self] in
+            try await networkScheduler.doQueue { [weak self] in
                 guard let self else {
                     return
                 }
@@ -146,7 +149,7 @@ final class HomeViewModel: HomeViewModelProtocol {
 
     private func performSearch(query: String) async {
         do {
-            try await NetworkScheduler.shared.doQueue { [weak self] in
+            try await networkScheduler.doQueue { [weak self] in
                 guard let self else {
                     return
                 }

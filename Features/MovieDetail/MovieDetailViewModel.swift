@@ -15,13 +15,16 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     private(set) var movieDetail: MovieDetailModel?
     private(set) var similarMovies: [SimilarMoviesListModel] = []
     private let dataController: MovieDetailDataProtocol
+    private let networkScheduler: NetworkSchedulerProtocol
     private let movieId: Int
     private var currentPage = 1
     private var totalPages = 1
 
     init(dataController: MovieDetailDataProtocol,
+         networkScheduler: NetworkSchedulerProtocol,
          movieId: Int) {
         self.dataController = dataController
+        self.networkScheduler = networkScheduler
         self.movieId = movieId
     }
 
@@ -34,13 +37,13 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
 
     func onDisappear() {
         Task { @MainActor in
-            await NetworkScheduler.shared.killAllTasks()
+            await networkScheduler.killAllTasks()
         }
     }
 
     private func loadInitialData() async {
         do {
-            try await NetworkScheduler.shared.doQueue { [weak self] in
+            try await networkScheduler.doQueue { [weak self] in
                 guard let self else {
                     return
                 }
