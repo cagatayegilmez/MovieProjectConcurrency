@@ -23,6 +23,7 @@ final class HomeViewModelTests: XCTestCase {
         navigationSpy = NavigationSpy()
         sut = HomeViewModel(
             dataController: dataController,
+            networkScheduler: NetworkScheduler(),
             onNavigateToMovieDetail: navigationSpy.navigate(movieId:title:)
         )
     }

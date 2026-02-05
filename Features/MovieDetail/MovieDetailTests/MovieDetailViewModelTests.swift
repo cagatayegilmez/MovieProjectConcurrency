@@ -18,7 +18,9 @@ final class MovieDetailViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         dataController = MockMovieDetailDataController()
-        sut = MovieDetailViewModel(dataController: dataController, movieId: 42)
+        sut = MovieDetailViewModel(dataController: dataController,
+                                   networkScheduler: NetworkScheduler(),
+                                   movieId: 42)
     }
 
     override func tearDown() {
