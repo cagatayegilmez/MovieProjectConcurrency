@@ -24,6 +24,7 @@ actor NetworkScheduler: NetworkSchedulerProtocol {
     func doQueue(block: @Sendable @escaping () async throws -> Void) async throws {
         let task = Task { [previousTask] in
             _ = await previousTask?.result
+            try Task.checkCancellation()
             return try await block()
         }
 
