@@ -6,23 +6,41 @@
 //
 
 import Foundation
-import Observation
 
 @MainActor
-@Observable
 final class HomeViewModel: HomeViewModelProtocol {
 
-    private(set) var viewState: ViewState = .idle
-    private(set) var nowPlayingMovies: [MovieListModel] = []
-    private(set) var upcomingMovies: [MovieListModel] = []
-    private(set) var searchResults: [MovieListModel] = []
+    let didChange = ObservableBox<Void>()
+
+    private(set) var viewState: ViewState = .idle {
+        didSet {
+            invalidate()
+        }
+    }
+    private(set) var nowPlayingMovies: [MovieListModel] = [] {
+        didSet {
+            invalidate()
+        }
+    }
+    private(set) var upcomingMovies: [MovieListModel] = [] {
+        didSet {
+            invalidate()
+        }
+    }
+    private(set) var searchResults: [MovieListModel] = [] {
+        didSet {
+            invalidate()
+        }
+    }
     var queryString: String = "" {
         didSet {
             if queryString.isEmpty {
                 searchResults.removeAll()
+                invalidate()
                 return
             }
             scheduleSearch(for: queryString)
+            invalidate()
         }
     }
     private let dataController: HomeDataProtocol
@@ -33,6 +51,8 @@ final class HomeViewModel: HomeViewModelProtocol {
     private let minimumSearchLength = 2
     private let searchDebounceNanoseconds: UInt64 = 350_000_000
     private var isLoadingMore = false
+    private var isBatching = false
+    private var needsInvalidate = false
     private let onNavigateToMovieDetail: (_ movieId: Int, _ title: String) -> Void
 
     init(dataController: HomeDataProtocol,
@@ -45,6 +65,7 @@ final class HomeViewModel: HomeViewModelProtocol {
 
     func onAppear() {
         viewState = .loading
+        invalidate()
         Task {
             await loadInitialMovies()
         }
@@ -52,6 +73,7 @@ final class HomeViewModel: HomeViewModelProtocol {
 
     func onDisappear() {
         searchTask?.cancel()
+        didChange.removeAll()
         Task { @MainActor in
             await networkScheduler.killAllTasks()
         }
@@ -88,14 +110,18 @@ final class HomeViewModel: HomeViewModelProtocol {
 
                 let response = try await self.dataController.fetchUpcomingList(self.currentPage)
                 await MainActor.run {
-                    self.viewState = .loaded
-                    self.upcomingMovies.append(contentsOf: response?.results ?? [])
+                    self.batch {
+                        self.viewState = .loaded
+                        self.upcomingMovies.append(contentsOf: response?.results ?? [])
+                    }
                 }
             }
         } catch {
             await MainActor.run {
-                let message = (error as? LocalizedError)?.errorDescription ?? error.localizedDescription
-                viewState = .error(message: message)
+                self.batch {
+                    let message = (error as? LocalizedError)?.errorDescription ?? error.localizedDescription
+                    viewState = .error(message: message)
+                }
             }
         }
     }
@@ -116,16 +142,20 @@ final class HomeViewModel: HomeViewModelProtocol {
                 async let upcoming = self.dataController.fetchUpcomingList(currentPage)
                 let (now, up) = try await (nowPlaying, upcoming)
                 await MainActor.run {
-                    self.nowPlayingMovies = now?.results ?? []
-                    self.upcomingMovies = up?.results ?? []
-                    self.totalPages = up?.total_pages ?? 1
-                    self.viewState = .loaded
+                    self.batch {
+                        self.nowPlayingMovies = now?.results ?? []
+                        self.upcomingMovies = up?.results ?? []
+                        self.totalPages = up?.total_pages ?? 1
+                        self.viewState = .loaded
+                    }
                 }
             }
         } catch {
             await MainActor.run {
-                let message = (error as? LocalizedError)?.errorDescription ?? error.localizedDescription
-                viewState = .error(message: message)
+                self.batch {
+                    let message = (error as? LocalizedError)?.errorDescription ?? error.localizedDescription
+                    viewState = .error(message: message)
+                }
             }
         }
     }
@@ -156,18 +186,41 @@ final class HomeViewModel: HomeViewModelProtocol {
 
                 let response = try await self.dataController.searchInMovies(query, currentPage)
                 await MainActor.run {
-                    self.searchResults = (response?.results ?? []).filter {
-                        $0.backdrop_path != nil
+                    self.batch {
+                        self.searchResults = (response?.results ?? []).filter {
+                            $0.backdrop_path != nil
+                        }
                     }
                 }
             }
         } catch {
             await MainActor.run {
-                self.searchResults = []
+                self.batch {
+                    self.searchResults = []
+                }
             }
             #if DEBUG
             print("Search failed: \(error)")
             #endif
+        }
+    }
+
+    private func invalidate() {
+        if isBatching {
+            needsInvalidate = true
+            return
+        }
+        didChange.emit(())
+    }
+
+    private func batch(_ updates: () -> Void) {
+        isBatching = true
+        needsInvalidate = true
+        updates()
+        isBatching = false
+        if needsInvalidate {
+            needsInvalidate = false
+            didChange.emit(())
         }
     }
 }

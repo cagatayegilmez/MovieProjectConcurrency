@@ -20,6 +20,8 @@ struct HomeView: View {
     weak var loader: SwiftUILoaderProtocol?
     @State private var wholeSize: CGSize = .zero
     @State private var scrollViewSize: CGSize = .zero
+    @State private var invalidateTick: Int = 0
+    @State private var changeToken: UUID?
     private let spaceName = "scroll"
     private let placeholder = Color(.systemGray4)
 
@@ -30,15 +32,28 @@ struct HomeView: View {
     }
 
     var body: some View {
-        content
-            .task {
+        let _ = invalidateTick
+
+        return content
+            .onAppear {
+                if changeToken == nil {
+                    let tick = $invalidateTick
+
+                    changeToken = viewModel.didChange.observe { [weak loader] _ in
+                        tick.wrappedValue += 1
+                        let isLoading = [.idle, .loading].contains(viewModel.viewState)
+                        loader?.toggleLoading(isLoading: isLoading)
+                    }
+                }
+
                 viewModel.onAppear()
-            }
-            .onChange(of: viewModel.viewState) { _, newValue in
-                let condition = [.idle, .loading].contains(newValue)
-                loader?.toggleLoading(isLoading: condition)
+                loader?.toggleLoading(isLoading: [.idle, .loading].contains(viewModel.viewState))
             }
             .onDisappear {
+                if let token = changeToken {
+                    viewModel.didChange.remove(token)
+                    changeToken = nil
+                }
                 viewModel.onDisappear()
             }
     }

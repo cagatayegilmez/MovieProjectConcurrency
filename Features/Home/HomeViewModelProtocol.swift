@@ -8,6 +8,9 @@
 @MainActor
 protocol HomeViewModelProtocol: AnyObject {
 
+    /// Observation of changing
+    var didChange: ObservableBox<Void> { get }
+
     /// State of screen
     var viewState: ViewState { get }
 
