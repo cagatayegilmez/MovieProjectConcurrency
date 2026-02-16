@@ -7,11 +7,6 @@ disabled_rules:
   - todo
   - type_name
 
-excluded:
-  - Carthage
-  - IsCepUITests
-  - External/CanliBorsa
-
 analyzer_rules:
   - unused_declaration
   - unused_import
@@ -74,12 +69,3 @@ attributes:
     - "@IBOutlet"
     - "@NSManaged"
     - "@testable"
-
-custom_rules:
-    uitest_duplicate_finder:
-      included: ".*TestCase\\.swift"
-      name: "UITest Duplicate Finder"
-      regex: "((?<!final)\\s+class((?!class).)+)func\\stest"
-      message: "Classes contains test functions must be final!"
-      severity: error
-      ignore_comments: true
