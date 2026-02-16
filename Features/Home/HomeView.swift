@@ -32,7 +32,7 @@ struct HomeView: View {
     }
 
     var body: some View {
-        let _ = invalidateTick
+        _ = invalidateTick
 
         return content
             .onAppear {
