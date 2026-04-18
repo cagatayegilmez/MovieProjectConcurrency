@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let window = UIWindow(windowScene: windowScene)
         let factory = DefaultAppScreenFactory()
-        let navController = UINavigationController()
+        let navController = NavigationController()
         let coordinator = AppCoordinator(navigationController: navController,
                                          factory: factory) { route in
             switch route {

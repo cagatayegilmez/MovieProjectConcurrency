@@ -32,7 +32,7 @@ final class DefaultAppScreenFactory: AppScreenFactory {
         let viewController = MovieDetailViewController(viewModel: viewModel)
         viewController.title = movieTitle
         let view = MovieDetailView(viewModel: viewModel, loader: viewController)
-        viewController.addSwiftUIView(view)
+        viewController.addSwiftUIView(view, hasNavBar: true)
         return viewController
     }
 }

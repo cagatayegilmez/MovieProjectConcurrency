@@ -37,7 +37,7 @@ extension UIViewController: SwiftUILoaderProtocol {
     }
 
     @discardableResult
-    func addSwiftUIView<T: View>(_ swiftUIView: T) -> UIView? {
+    func addSwiftUIView<T: View>(_ swiftUIView: T, hasNavBar: Bool = false) -> UIView? {
         let hostingViewController = UIHostingController(rootView: swiftUIView)
         guard let rootView = hostingViewController.view else {
             return nil
@@ -48,7 +48,9 @@ extension UIViewController: SwiftUILoaderProtocol {
 
         view.addSubview(rootView)
         NSLayoutConstraint.activate([
-            rootView.topAnchor.constraint(equalTo: view.topAnchor),
+            rootView.topAnchor.constraint(equalTo: hasNavBar
+                                          ? view.safeAreaLayoutGuide.topAnchor
+                                          : view.topAnchor),
             rootView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             rootView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             rootView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
